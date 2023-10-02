@@ -8,6 +8,19 @@ import { TaskComponent } from './task/task.component';
 
 })
 export class AppComponent {
-  title = 'ToDo';
-  items: string[] = ['Пункт 1', 'Пункт 2', 'Пункт 3'];
+  title:string = 'ToDo';
+  items: Task[] = [
+    new Task(true,"helloWorld"),
+    new Task(false,"helloWorld1"),
+    new Task(false,"helloWorld2"),
+    new Task(false,"helloWorld3"),
+  ];
+}
+class Task{
+ status:boolean;
+ text:string;
+ constructor(status:boolean,text:string) {
+  this.status = status;
+  this.text = text;
+ }
 }

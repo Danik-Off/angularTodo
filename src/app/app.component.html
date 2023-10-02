@@ -1,21 +1,10 @@
 <div class="todo">
-  <header>
-    <h1>{{title}}</h1>
-    <input/>
-  </header>
+  <app-header [title]="title"></app-header>
   <ul>
-
-      <app-task *ngFor="let item of items"></app-task>
+      <app-task *ngFor="let item of items"
+      [text]="item.text"
+      [checked]="item.status"
+      ></app-task>
   </ul>
-  <footer>
-
-    <input type="radio" id="radio1" name="radioGroup" >
-    <label class="custom-radio" for="radio1">All</label>
-
-    <input type="radio" id="radio2" name="radioGroup">
-    <label class="custom-radio" for="radio2">Active</label>
-
-    <input type="radio" id="radio3" name="radioGroup">
-    <label class="custom-radio" for="radio3">Completed</label>
-</footer>
+  <app-footer></app-footer>
 </div>

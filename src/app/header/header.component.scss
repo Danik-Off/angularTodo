@@ -1,0 +1,19 @@
+header {
+  h1 {
+    text-align: center;
+  }
+  .inputLine{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    input{
+      margin: 0;
+      height: 1rem;
+    }
+    input[type=text] {
+      width: 300px;
+    }
+  }
+
+}

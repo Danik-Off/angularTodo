@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'app-task',
   template: `
-    <li>
-      <input type="checkbox" />
-      <label>tgadf</label>
-      <button>X</button>
+     <li>
+      <input type="checkbox" [checked]="checked"/>
+      <label>{{labelText}}</label>
+      <button>&times;</button>
     </li>
   `,
-  styleUrls: ['./task.component.scss'],
+  styleUrls: ['./task.component.scss']
 })
-export class TaskComponent {}
+export class TaskComponent {
+@Input("text") labelText:string ='';
+@Input() checked!:boolean;
+}

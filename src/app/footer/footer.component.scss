@@ -1,0 +1,21 @@
+footer {
+  display: flex;
+  width: 300px;
+  flex-direction: row;
+  justify-content: center;
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  .custom-radio {
+    cursor: pointer;
+  }
+  input[type="radio"]:checked + label {
+   border: 1px solid rgba(175, 47, 47, 0.2);
+    padding:calc( 10px - 1px);
+  }
+  label{
+    padding: 10px;
+  }
+}
