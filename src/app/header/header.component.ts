@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input,Output,EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +7,9 @@ import { Component, Input } from '@angular/core';
        <h1>{{title}}</h1>
        <div class="inputLine">
        <input type="checkbox"/>
-       <input/>
+       <input #textInput
+       (keydown.enter)="onClick()"
+       (blur)="onClick()" />
        </div>
     </header>
   `,
@@ -15,4 +17,16 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
  @Input() title!:string;
+ @ViewChild('textInput')
+  textInput!: ElementRef;
+ @Output() onEndWrite = new EventEmitter<string>();
+
+ onClick() {
+  console.log(this.textInput.nativeElement.value);
+  if(this.textInput.nativeElement.value){
+    this.onEndWrite.emit(this.textInput.nativeElement.value);
+    this.textInput.nativeElement.value = "";
+  }
+
+ }
 }

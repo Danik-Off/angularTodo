@@ -1,9 +1,11 @@
 <div class="todo">
-  <app-header [title]="title"></app-header>
+  <app-header (onEndWrite)="addItem($event)"  [title]="title"></app-header>
   <ul>
-      <app-task *ngFor="let item of items"
+      <app-task *ngFor="let item of items; let i = index"
       [text]="item.text"
       [checked]="item.status"
+      (delete)="deleteItem(i)"
+      (edit)="editTextItem(i,$event)"
       ></app-task>
   </ul>
   <app-footer></app-footer>
