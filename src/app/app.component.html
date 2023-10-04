@@ -3,10 +3,10 @@
   <ul>
       <app-task *ngFor="let item of items; let i = index"
       [text]="item.text"
-      [checked]="item.status"
+      [checked]="item.done"
       (delete)="deleteItem(i)"
       (edit)="editTextItem(i,$event)"
       ></app-task>
   </ul>
-  <app-footer></app-footer>
+  <app-footer (changeFilter)="setFilter($event)"></app-footer>
 </div>

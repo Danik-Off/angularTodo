@@ -8,19 +8,33 @@ import { Task } from './item';
 
 })
 export class AppComponent {
+
+
   title:string = 'ToDo';
-  items: Task[] = [
-    {status:true,text:"helloWorld"},
-    {status:true,text:"helloWorld"},
-    {status:true,text:"helloWorld"},
-    {status:true,text:"helloWorld"},
-  ];
+
+  filter: 'all' | 'active' | 'done' = 'all';
+
+  allItems: Task[] = [];
+
+  get items():Task[]{
+    if (this.filter === 'all') {
+      return this.allItems;
+    }
+    return this.allItems.filter(item => this.filter === 'done' ? item.done : !item.done);
+  }
+
   ngOnInit(){
     this.load();
   }
+
+  setFilter(newFilter:'all' | 'active' | 'done'):void
+  {
+    this.filter = newFilter
+  }
+
   addItem(text:string){
     this.items.unshift(
-      {status:false,text},
+      {done:false,text},
     )
     this.save();
   }
@@ -38,14 +52,14 @@ export class AppComponent {
   }
   save(){
     localStorage.setItem(
-      "todoItems",JSON.stringify(this.items)
+      "todoItems",JSON.stringify(this.allItems)
     );
   }
   load(){
     const localStorageData = localStorage.getItem( "todoItems");
     if (localStorageData) {
       try {
-        this.items = JSON.parse(localStorageData) as Task[];
+        this.allItems = JSON.parse(localStorageData) as Task[];
       } catch (error) {
         console.error("Ошибка:", error);
       }
