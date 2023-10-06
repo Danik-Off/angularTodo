@@ -11,7 +11,7 @@ import {
   selector: 'app-task',
   template: `
     <li>
-      <input type="checkbox" [checked]="checked" />
+      <input type="checkbox" [(ngModel)]="checked" (click)="onDone()"/>
       <label #label (dblclick)="onEdit()" [hidden]="isEdited">
         {{ editedText}}
       </label>
@@ -36,6 +36,7 @@ export class TaskComponent {
   @Input() checked!: boolean;
 
   @Output() edit = new EventEmitter<string>();
+  @Output() done = new EventEmitter<boolean>();
   @Output() delete = new EventEmitter();
 
   @ViewChild('inputText') inputText!: ElementRef;
@@ -48,6 +49,9 @@ export class TaskComponent {
   }
   onDelete(): void {
     this.delete.emit();
+  }
+  onDone(): void {
+    this.done.emit(!this.checked);
   }
   onEdit(): void {
     this.isEdited = true;
