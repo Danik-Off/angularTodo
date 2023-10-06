@@ -1,12 +1,15 @@
 <div class="todo">
-  <app-header (onEndWrite)="addItem($event)"  [title]="title"></app-header>
+  <app-header [title]="title" [allSelected]="allSelected" (onEndWrite)="addItem($event)" (chooseAll)="chooseAll($event)"/>
   <ul>
-      <app-task *ngFor="let item of items; let i = index"
+    <app-task
+      *ngFor="let item of items; let i = index"
       [text]="item.text"
       [checked]="item.done"
+      
       (delete)="deleteItem(i)"
-      (edit)="editTextItem(i,$event)"
-      ></app-task>
+      (edit)="editTextItem(i, $event)"
+      (done)="editStatusItem(i, $event)"
+    ></app-task>
   </ul>
   <app-footer (changeFilter)="setFilter($event)"></app-footer>
 </div>
